@@ -17,6 +17,6 @@
 view, serializer, link to model, url registered
 
 
-![tree structure of project](./tree_structure.png?raw=true "Optional Title")
+![tree structure of project](./file_structure.png?raw=true "Optional Title")
 
   
