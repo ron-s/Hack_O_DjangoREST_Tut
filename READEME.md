@@ -17,6 +17,8 @@
 view, serializer, link to model, url registered
 
 
-![tree structure of project](./file_structure.png?raw=true "Optional Title")
+![tree structure of project](./images_readme/file_structure.png?raw=true "Optional Title")
+
+![tree structure of project](./images_readme/DRFpieces.png?raw=true "Optional Title")
 
   
