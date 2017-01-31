@@ -1,24 +1,20 @@
 ## Tutorial Setup
-
-### Virtual env setup
-1. Setup virtual env: 
+#### 1. Clone repo 
+#### 2. Make Virtual env 
+- Setup virtual env: 
   - virtualenv -p /usr/local/bin/python3 venv3  
-2. Activate virtual env: 
+- Activate virtual env: 
   - source venv3/bin/activate 
   
-### Installing depencencies with pip
-1. install depedencies from requirements.txt: <br>
-  - pip install -r requirements.txt <br>
-    Note: to see how project setup works from scratch see: [link_to_DRF_quickstart](http://www.django-rest-framework.org/tutorial/quickstart/) 
+#### 3. Install depencencies with pip
+- install depedencies from requirements.txt: <br>
+  - pip install -r requirements.txt <br> 
     
-## Explaination of pieces needed for DRF to make an endpoint
-
-  - add diagram here to show the pieces needed for an endpoint to work: 
-view, serializer, link to model, url registered
-
-
+## Example file structure of a starter project
+Below is what the file structure looked like after running a basic setup found here: [new_project_setup](http://www.django-rest-framework.org/tutorial/quickstart/) 
 ![tree structure of project](./images_readme/file_structure.png?raw=true "Optional Title")
 
+## Basic building blocks that need to be in place for all endpoints 
 ![tree structure of project](./images_readme/DRFpieces.png?raw=true "Optional Title")
 
   
