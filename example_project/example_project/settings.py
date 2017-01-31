@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # *******************************
+    # added outside of default setup 
     'rest_framework',
     'example_app',
+    'django_filters'
+    # *******************************
 ]
 
 MIDDLEWARE = [
@@ -82,6 +86,12 @@ DATABASES = {
     }
 }
 
+# **********************************************************************************
+# added outside of normal default setup 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
+# **********************************************************************************
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
