@@ -21,4 +21,9 @@ The image above outlines the pieces that need to be in place for an endpoint to 
 
 ## Useful DRF shell commands 
 
+## Filtering querysets in views 
+[Filtering_Docs](http://www.django-rest-framework.org/api-guide/filtering/)
+
+## Useful links to docs about views in DRF 
+[Generic_Views_Docs](http://www.django-rest-framework.org/api-guide/generic-views/#concrete-view-classes)
   
