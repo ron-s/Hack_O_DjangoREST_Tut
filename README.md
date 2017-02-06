@@ -25,6 +25,11 @@ Below is what the file structure looked like after running a basic setup found h
 The image above outlines the pieces that need to be in place for an endpoint to work in the DRF assuming that the basic setup of the project has already been done.
 
 ## Useful DRF shell commands 
+- Running development server: ```python manage.py runserver```
+- Getting help in command line: ```python manage.py help``` --> will list all commands available in manage.py. See links below for more details.
+- Auto generating models.py from the command line: [Docs on inspectdb](https://docs.djangoproject.com/en/1.10/howto/legacy-databases/)
+- Link to docs for all shell commands: [django command line docs](https://docs.djangoproject.com/en/1.10/ref/django-admin/)
+
 
 ## Filtering querysets in views 
 [Filtering_Docs](http://www.django-rest-framework.org/api-guide/filtering/)
