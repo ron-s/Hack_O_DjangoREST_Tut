@@ -60,9 +60,26 @@ class ListSongs(generics.ListAPIView):
 
 
 # -------------------------------------------------------------------------
-# example of different ways to trim querysets 
+# example of different ways to filter querysets 
 # -------------------------------------------------------------------------
-class 
+class TrimSongs(generics.ListAPIView):
+    """
+    This view is only an example of the different methods availible to filter 
+    songs and some added browsable functionality availible. If you were to plug 
+    all the filters into a view you would most likely get an empty list as a result. 
+    """
+
+    # giving the view that basic building blocks it needs to work 
+    queryset = models.Songs.objects.all()
+    serializer_class = serializers.SongSerializer
+
+    # adds a filter backend that was declared in settings.py 
+    # this gives you different ways to filter the response of the view in the browser
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+
+    # example of filter in pseudo code
+    filtered_queryset = queryset.filter(columnName__)
+
 
 
 

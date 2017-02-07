@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from example_app import views
+from django.conf.urls import include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^songs/', views.Songs.as_view()),
+    url(r'^example/', include('example_app.urls', namespace='example_app')),
 ]
