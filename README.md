@@ -27,6 +27,7 @@ The image above outlines the pieces that need to be in place for an endpoint to 
 ## Useful DRF shell commands 
 - Running development server: ```python manage.py runserver```
 - Getting help in command line: ```python manage.py help``` --> will list all commands available in manage.py. See links below for more details.
+- Auto generating fixtures for testsing: [Docs for fixtures](http://django-testing-docs.readthedocs.io/en/latest/fixtures.html)
 - Auto generating models.py from the command line: [Docs on inspectdb](https://docs.djangoproject.com/en/1.10/howto/legacy-databases/)
 - Link to docs for all shell commands: [django command line docs](https://docs.djangoproject.com/en/1.10/ref/django-admin/)
 
