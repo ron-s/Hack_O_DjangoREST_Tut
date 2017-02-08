@@ -13,7 +13,7 @@
 #### 4. Start server
 - In directory with manage.py run this command: 
   - python manage.py runserver 
-  - see working endpoint at: [http://localhost:8000/songs/](http://localhost:8000/songs/)
+  - see working endpoint at: [http://localhost:8000/songs/](http://localhost:8000/example/)
     
 ## Example file structure of a starter project
 Below is what the file structure looked like after running a basic setup found here: [new_project_setup](http://www.django-rest-framework.org/tutorial/quickstart/) 
