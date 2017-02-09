@@ -24,6 +24,32 @@ Below is what the file structure looked like after running a basic setup found h
 
 The image above outlines the pieces that need to be in place for an endpoint to work in the DRF assuming that the basic setup of the project has already been done.
 
+## Building models
+Models are just representations of what you have in your database. You can build models by hand or if you have existing data in the DB you can use the command below.
+- ```python manage.py inspectdb``` --> Will look at the connected database and show the equivilent Django model 
+- ```python manage.py inspectdb > example_models.py``` --> This pipes the output into a file that you can then use to set up your models  
+
+## Migrations 
+Anytime you change the models in a Django project you need to apply those change to the database so the models and database tables are synced. This is done by making migrations see the commands below for examples of how to make migrations.  
+- ```python manage.py makemigrations``` --> sets up the migration file that reflects the changes you're made to the models
+- ```python manage.py migrate``` --> applies the migrations that were setup above to the DB
+
+## Serializers 
+A way of serializing and deserializing data. This basically means just taking data and turning it into a different format like JSON. Serializers are basically like translators that allow our Django REST API to talk to differnt programs using formats that both understand. A useful way to inspect serializers is to open the Django shell and print the ```repr``` of them. This can be accomplished by using the commands below.
+- ```  python manage.py shell``` --> launches shell from command line
+
+Inside shell use the commands below to import our song serializer and then inspect it. Remember to hit enter after each.
+```Python 
+  from example_app.serializers import SongSerializer 
+  from example_app.models import Songs
+
+  serial_instance = SongSerializer()
+  print(repr(serial_instance))
+  
+  # to quit shell
+  quit()
+```
+
 ## Useful DRF shell commands 
 - Running development server: ```python manage.py runserver```
 - Getting help in command line: ```python manage.py help``` --> will list all commands available in manage.py. See links below for more details.
