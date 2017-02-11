@@ -9,3 +9,4 @@ class Songs(models.Model):
 
     class Meta:
         db_table = 'song_lyrics'
+

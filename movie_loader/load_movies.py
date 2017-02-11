@@ -21,7 +21,7 @@ def POST_csv_data_to_db(csv_path):
 
             r = requests.post("http://localhost:8000/example/movies/", data=POST_data)
 
-            # raises error in script if POST request returns 400s or 500s  
+            # raises error in script if request returns 400s or 500s  
             r.raise_for_status()    
 
         return
