@@ -47,14 +47,14 @@ If everything has been set up correctly we should be able to start our local ser
 ### Using the browsable API
 One of the great things about the Django REST Framework is the built in functionality that is added when you use its pre-built classes to build endpoints.
 - Start the local server by using this command: ```python manage.py runserver```
-- Go to this link: [http://localhost:8000/example/movies/](http://localhost:8000/example/movies/)
+- Go to this link: [http://localhost:8000/movies/](http://localhost:8000/movies/)
 
 ### Adding data using our POST endpoint
 We will now use the endpoint we created to add data to our database. The ```movie_loader/load_movies.py``` file will make the POST calls to the endpoint we created. This is done by reading the csv file and then using the ```requests``` library to make a POST call for each line in the file. 
 - You'll need to have a two terminal windows open for this both with your virtual envirnonment activated. 
 - In the first terminal run the ```python manage.py runserver``` command. We need to have our server running so we can send the POST calls. 
 - In the second terminal run: ```python load_movies.py film.csv``` in the ```movie_loader``` directory.
-If everything works you should see the terminal window running the server begin to log a bunch of POST requests. Once this is complete the data has now been entered in our database. If you would like to check that the data is now present open the link to your Django server: [http://localhost:8000/example/movies/](http://localhost:8000/example/movies/) There should now be a bunch of movie data. 
+If everything works you should see the terminal window running the server begin to log a bunch of POST requests. Once this is complete the data has now been entered in our database. If you would like to check that the data is now present open the link to your Django server: [http://localhost:8000/movies/](http://localhost:8000/movies/) There should now be a bunch of movie data. 
 
 ### Further challanges 
 Using the basics we have covered think of ways that you could build endpoints that let users filter the movie data in interesting ways. Make a habit of adding tests for these endpoints as you create them. Writing tests can be a pain but they will save you time over the long run. 
