@@ -67,11 +67,15 @@ What we're doing is pointing this serializer at the ```Songs``` model we've alre
   # to quit shell
   quit()
 ```
-- Example output
-
-  
-  
-
+- Example output from shell
+```Python
+SongSerializer():
+    id = IntegerField(read_only=True)
+    artist_name = CharField(max_length=255, required=False)
+    song_title = CharField(max_length=255, required=False)
+    song_year = IntegerField(allow_null=True, required=False)
+    song_lyrics = CharField(style={'base_template': 'textarea.html'})
+```
 
 ## Views 
 
