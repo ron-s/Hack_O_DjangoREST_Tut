@@ -24,21 +24,39 @@ Below is what the file structure looked like after running a basic setup found h
 
 The image above outlines the pieces that need to be in place for an endpoint to work in the DRF assuming that the basic setup of the project has already been done.
 
-## Building models
-Models are just representations of what you have in your database. You can build models by hand or if you have existing data in the DB you can use the command below.
-- ```python manage.py inspectdb``` --> Will look at the connected database and show the equivilent Django model 
-- ```python manage.py inspectdb > example_models.py``` --> This pipes the output into a file that you can then use to set up your models  
+## Models 
+A model just represents a table in your database and the attributes of the model class match the fields in that table. By creating a model and then syncing it with the database Django will tell the database to create a table that matches the model you have created in your project. Below is an example of the Songs model that is in our ```example_project/example_app/models.py``` file. 
+```Python
+from django.db import models
 
-## Migrations 
-Anytime you change the models in a Django project you need to apply those change to the database so the models and database tables are synced. This is done by making migrations see the commands below for examples of how to make migrations.  
-- ```python manage.py makemigrations``` --> sets up the migration file that reflects the changes you're made to the models
-- ```python manage.py migrate``` --> applies the migrations that were setup above to the DB
+class Songs(models.Model):
+    id = models.AutoField(primary_key=True)
+    artist_name = models.CharField(max_length=255, default='')
+    song_title = models.CharField(max_length=255, default='')
+    song_year = models.IntegerField(blank=True, null=True)
+    song_lyrics = models.TextField()
+
+    class Meta:
+        db_table = 'song_lyrics'
+```
+Notice how each attribute in the model class has a datatype to which it is assigned. These data types are defined in the ```django.db.models``` module and offer a convienient way to assign data types the values in our models. 
+- [Django model field docs](https://docs.djangoproject.com/en/1.10/ref/models/fields/)
+- [Django model docs](https://docs.djangoproject.com/en/1.10/ref/models/) --> There is a ton of documentation here that gets into everything you can possibly do with models. 
 
 ## Serializers 
-A way of serializing and deserializing data. This basically means just taking data and turning it into a different format like JSON. Serializers are basically like translators that allow our Django REST API to talk to differnt programs using formats that both understand. A useful way to inspect serializers is to open the Django shell and print the ```repr``` of them. This can be accomplished by using the commands below.
+A way of serializing and deserializing data. This basically means just taking data and turning it into a different format like JSON or XML. Serializers are basically like translators that allow our Django REST API to talk to different programs using formats that both understand. There are many ways to define a serializer but we have included a simple example using Django's ```ModelSerializer``` class in the ```example_project/example_app/serializers.py``` file. See below. 
+
+```Python 
+class SongSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Songs
+        fields = '__all__'
+```
+What we're doing is pointing this serializer at the ```Songs``` model we've already created and telling it serialize all of the fields in that model by declaring ```fields = '__all__'``` in the ```Meta``` of the serializer. You could also declare each attribute explicitly if you liked. Follow the instructions below to inspect this serializer in the Django shell. 
+
 - ```  python manage.py shell``` --> launches shell from command line
 
-Inside shell use the commands below to import our song serializer and then inspect it. Remember to hit enter after each.
+- Inside shell use the commands below to import our song serializer and then inspect it. Remember to hit return after entering each line.
 ```Python 
   from example_app.serializers import SongSerializer 
   from example_app.models import Songs
@@ -49,18 +67,13 @@ Inside shell use the commands below to import our song serializer and then inspe
   # to quit shell
   quit()
 ```
+- Example output
 
-## Useful DRF shell commands 
-- Running development server: ```python manage.py runserver```
-- Getting help in command line: ```python manage.py help``` --> will list all commands available in manage.py. See links below for more details.
-- Auto generating fixtures for testsing: [Docs for fixtures](http://django-testing-docs.readthedocs.io/en/latest/fixtures.html)
-- Auto generating models.py from the command line: [Docs on inspectdb](https://docs.djangoproject.com/en/1.10/howto/legacy-databases/)
-- Link to docs for all shell commands: [django command line docs](https://docs.djangoproject.com/en/1.10/ref/django-admin/)
+  
+  
 
 
-## Filtering querysets in views 
-[Filtering_Docs](http://www.django-rest-framework.org/api-guide/filtering/)
+## Views 
 
-## Useful links to docs about views in DRF 
-[Generic_Views_Docs](http://www.django-rest-framework.org/api-guide/generic-views/#concrete-view-classes)
+## Linking URLs to views
   
