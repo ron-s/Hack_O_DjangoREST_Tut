@@ -29,19 +29,19 @@ Anytime you make changes to a model in Django you then need to sync these change
 ### Creating a serializer for our model
 We now need to create a serializer for our model. Remember that serializers are needed to transform data in and out of different formats that map to our Django models.
 
-- Create a serializer for the ```Movies``` model in the ```example_app/serializers.py``` file using the existing serializer for the ```Songs``` model as an example. 
+- Create a serializer for the ```Movies``` model in the ```example_app/serializers.py``` file using the [existing serializer](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/blob/master/example_project/example_app/serializers.py) for the ```Songs``` model as an example. 
 
 ### Creating a view for our new model
-We now need to create a view that allows us to send POST requests adding data to the ```Movies``` model and its matching database table. Use the exisiting views in the ```example_app/views.py``` file as a guide. Feel free to build either a function or class based view. 
-- Build a new view in the ```example_app/views.py``` file that will accept POST and GET request. 
+We now need to create a view that allows us to send POST requests adding data to the ```Movies``` model and its matching database table. Use the exisiting views in the [```example_app/views.py```](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/blob/master/example_project/example_app/views.py) file as a guide. Feel free to build either a function or class based view, just make sure this view accepts ```GET``` and ```POST``` requests. 
+- Build a new view called ```ListCreateMovies``` in the ```example_app/views.py``` file that will accept ```POST``` and ```GET``` request. 
 
 ### Linking the view to a URL 
-Each view needs to be setup with a URL that points to the correct place. You can also setup URLs to accept parameters that will then be passed into your view as arguments. Use the urls in the ```example_app/urls.py``` file as a guide. 
-- Setup the URL routing for the newly created view. 
+Each view needs to be setup with a URL that points to the correct place. Use the example urls in the [```example_app/urls.py```](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/blob/master/example_project/example_app/urls.py) file as a guide. 
+- Setup the URL routing for the newly created view. The regex in the URL should be ```r'^movies/$'``` and should link to the ```ListCreateMovies``` view you created. 
 
 ### Seeing if it works 
 If everything has been setup correctly we should be able to start our local server and go to the endpoint we created. This takes a bit of time though and it would be really conivient if we could just run a command that will check that the endpoint is working for us. This is where the built in Django test runner is super helpful. 
-- Look in the ```example_app/tests.py``` file and find the test class called ```MovieTest```. This is a simple example of how the tests can be setup in your tests.py file. The tests are just checking that both the POST and GET methods are supported by the endpoint you built. 
+- Look in the ```example_app/tests.py``` file and find the test class called ```MovieTest```. This is a simple example of how the tests can be setup in your tests.py file. The tests are just checking that both the ```POST``` and ```GET``` methods are supported by the endpoint you built. 
 - Run these tests using this command: ```python manage.py test example_app``` 
 
 ### Using the browsable API
