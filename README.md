@@ -116,9 +116,60 @@ class ListSongs(generics.ListAPIView):
     serializer_class = serializers.SongSerializer
 ```
 
-This class based view can be found in the ```example_project/example_app/views.py``` file. With class based views they only require that you define a ```queryset``` and ```serializer_class```. Remember that these attributes just represent our model and our serializer. This view currently only accepts ```GET``` requests becasue it's inheriting from the ```generics.ListAPIView``` class. If we would like to allow this view to be able to accept ```POST``` requests it is as simple as changing the class it inherits from. By using the ```generics.ListCreateAPIView``` class instead the endpoint will now accept ```POST``` requests and allow us to load data into our database by hitting this view's endpoint. 
+This class based view can be found in the ```example_project/example_app/views.py``` file. With class based views they only require that you define a ```queryset``` and ```serializer_class```. Remember that these attributes just represent our model and our serializer. Class based views using the ```generics``` classs don't require that you explicitly return the serialized data in a response like the functional view did above. The methods that are inherited from the ```generics``` class return the correct data by plugging in your ```queryset``` and ```serializer_class``` where appropriate behind the scenes. 
+
+This view currently only accepts ```GET``` requests becasue it's inheriting from the ```generics.ListAPIView``` class. If we would like to allow this view to be able to accept ```POST``` requests it is as simple as changing the class it inherits from. By using the ```generics.ListCreateAPIView``` class instead the endpoint will now accept ```POST``` requests and allow us to load data into our database by hitting this view's endpoint. 
 
 Please see the docs for the ```generics``` classes the DRF offers: [generic_views](http://www.django-rest-framework.org/api-guide/generic-views/)
 
 ## Linking URLs to views
+The last thing we must remember do is link a URL endpoint to each view we add to our project. The way we're recommending you do this for Hack Oregon projects can be seen below. 
+
+This is an example of the contents of the ```example_project/example_app/urls.py``` file:
+```Python
+from django.conf.urls import url
+from . import views
+
+
+urlpatterns = [
+    #function based view
+    url(r'^funcsongs/$', views.song_list),
+
+    # class based view
+    url(r'^songs/$', views.ListSongs.as_view()),   
+]
+```
+Notice the difference in how the functional view and class view are defined. The ```r'^endpoint_name/$'``` part of the url declaration is using regex to point to a url that a user will hit to trigger the view. 
+
+This ```urls.py``` file inside your ```example_app``` directory doesn't come standard with the project setup and must be created by you if you're making a new project. By having the ```urls``` declared for each app inside a project it gives you the ability to create a single point of entry into your API. This is valuable because as long as the user knows the entry endpoint they can find all the other endpoints easily.
+
+## Adjusting urls in the project directory 
+There is still one last piece that needs to be linked in order for the endpoints to work properly. The endpoints that are served up by Django all must come out of the ```example_project/example_project/urls.py``` file. We haven't touched the inner ```example_project``` directory much in this tutorial yet. This inner directory is where you adjust the settings of your project and has two files that interest us ```settings.py``` and ```urls.py```. These files control all of the top level settings in your project. Every URL that is served in your project must come out of the ```urls.py``` file. In order to do this wee need to include the URLs we've already declared in our app. 
+```Python 
+from django.conf.urls import url
+from django.contrib import admin
+from django.conf.urls import include
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('example_app.urls', namespace='example_app')),
+]
+```
+Notice how we're using the ```include``` function to include all of the URLs we previously delcared in our app. Doing this gives us the option to add more apps in the future without worrying about URL conflicts. We also have the option of adding a prefix to all URLs for our app here. For example:
+```Python
+url(r'^example_prefix/', include('example_app.urls', namespace='example_app')),
+```
+Would cause every URL in our app to look someting like this: ```https://api_location.com/example_prefix/songs/```
+
+
+## Wrapping up 
+You now know the four main pieces that you need to worry about when adding an endpoint to any project. Those pieces are the ```model```, ```serializer```, ```view```, and ```url```. We would now like eveyone to try there hand at loading some sample data from a csv into this Django project by adding these four pieces and then sending ```POST``` requests to load the data. Please click on the ```movie_loader``` directory and follow the instructions there. 
+
+In the following week's class we will get into more detail on filtering querysets, testing, the settings of a project, and adding tools that help make everything shiny. 
+
+
+
+
+
+
   
