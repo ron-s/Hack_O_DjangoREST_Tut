@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # added outside of default setup 
     'rest_framework',
     'example_app',
-    'django_filters'
     # *******************************
 ]
 
@@ -85,13 +84,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# **********************************************************************************
-# added outside of normal default setup 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
-}
-# **********************************************************************************
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
