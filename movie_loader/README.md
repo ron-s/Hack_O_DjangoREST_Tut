@@ -7,6 +7,8 @@ A model just represents a table in your database and the attributes of the model
 
 Your model should look someting like this:
 ```Python
+# Please enter all model field names in lowercase letters!!!
+
 class Movies(models.Model):
   # creates an auto incrementing id field used as a primary key in the table 
   id = models.AutoField(primary_key=True)
@@ -25,9 +27,10 @@ Anytime you make changes to a model in Django you then need to sync these change
 - Use this command to make migrations: ```python manage.py makemigrations```
 - Once the migration is made apply it with this command: ```python manage.py migrate```
 - To see what an auto generated migration looks like check in the ```example_app/migrations``` directory.
+- To see all of the migrations that Django has run so far enter this command: ```python manage.py showmigrations```
 
 ### Creating a serializer for our model
-We now need to create a serializer for our model. Remember that serializers are needed to transform data in and out of different formats that map to our Django models.
+We now need to create a serializer for our model. Remember that serializers are needed to translate data in and out of different formats that map to our Django models.
 
 - Create a serializer for the ```Movies``` model in the ```example_app/serializers.py``` file using the [existing serializer](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/blob/master/example_project/example_app/serializers.py) for the ```Songs``` model as an example. 
 
