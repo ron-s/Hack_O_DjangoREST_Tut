@@ -19,7 +19,7 @@ def POST_csv_data_to_db(csv_path):
             # turns headers and line values into "header:line_value" dict used in POST
             POST_data = dict(zip(headers, line.strip().split(",")))
 
-            r = requests.post("http://localhost:8000/example/movies/", data=POST_data)
+            r = requests.post("http://localhost:8000/movies/", data=POST_data)
 
             # raises error in script if request returns 400s or 500s  
             r.raise_for_status()    

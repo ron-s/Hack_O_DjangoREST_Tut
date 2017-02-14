@@ -8,8 +8,12 @@ class SongListTest(TestCase):
     def setUp(self):
         self.c = Client()
 
-    def test_get_request_sends_200(self):
+    def test_song_class_endpoint_get_sends_200(self):
         response = self.c.get("/songs/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_song_func_endpoint_get_sends_200(self):
+        response = self.c.get("/funcsongs/")
         self.assertEqual(response.status_code, 200)
 
 
@@ -28,11 +32,11 @@ class MovieTest(TestCase):
         ]
 
 
-    def test_get_request_sends_200(self):
+    def test_movie_get_request_sends_200(self):
         response = self.c.get("/movies/")
         self.assertEqual(response.status_code, 200)
 
-    def test_post_request_sends_200(self):
+    def test_movie_post_request_sends_200(self):
         response = self.c.post("/movies/")
         self.assertEqual(response.status_code, 201)
 
