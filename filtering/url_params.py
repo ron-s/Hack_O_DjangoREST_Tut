@@ -17,6 +17,7 @@ urlpatterns = [
     # ---------------------------------------------------------------
 
     # ---------------------------------------------------------------
-
+    # Example of URL pattern that accepts a query string parameter 
+    url(r'^songsquery/', views.ListSongsQuerystringExample.as_view()),
     # ---------------------------------------------------------------
 ]
