@@ -163,7 +163,7 @@ Would cause every URL in our app to look someting like this: ```https://api_loca
 
 
 ## Wrapping up 
-You now know the four main pieces that you need to worry about when adding an endpoint to any project. Those pieces are the ```model```, ```serializer```, ```view```, and ```url```. We would now like eveyone to try there hand at loading some sample data from a csv into this Django project by adding these four pieces and then sending ```POST``` requests to load the data. Please click on the [```movie_loader```](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/tree/master/movie_loader) directory and follow the instructions there. 
+You now know the four main pieces that you need to worry about when adding an endpoint to any project. Those pieces are the ```model```, ```serializer```, ```view```, and ```url```. We would now like eveyone to try their hand at loading some sample data from a csv into this Django project by adding these four pieces and then sending ```POST``` requests to load the data. Please click on the [```movie_loader```](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/tree/master/movie_loader) directory and follow the instructions there. 
 
 In the following week's class we will get into more detail on filtering querysets, testing, the settings of a project, and adding tools that help make everything shiny. 
 
