@@ -10,7 +10,7 @@ Complete these steps inside the ```Hack_O_DjangoREST_Tut``` repo
   - ```virtualenv -p /usr/local/bin/python3 venv3``` 
 - Activate virtual environment: 
   - ```source venv3/bin/activate``` 
-  - command above activates the vitrual environment your command line prompt should start with ```(venv3)``` if it worked
+  - command above activates the virtual environment your command line prompt should start with ```(venv3)``` if it worked
   
 #### 3. Install depencencies with pip
 In the top level of the cloned repo there is a ```requirements.txt``` file  
@@ -60,7 +60,7 @@ class SongSerializer(serializers.ModelSerializer):
         model = models.Songs
         fields = '__all__'
 ```
-What we're doing is pointing this serializer at the ```Songs``` model we've already created and telling it serialize all of the fields in that model by declaring ```fields = '__all__'``` in the ```class Meta``` of the serializer. If you wanted to hide some of the fields that are returned to the end user this can be accomplished by declaring only the fields you want listed: ```fields = ('song_title', 'song_year')``` would only convert data from the ```song_title``` and ```song_year``` columns efectively hidding some of the informaton from the end user. You could also declare each attribute explicitly if you liked. Follow the instructions below to inspect this serializer in the Django shell.
+What we're doing is pointing this serializer at the ```Songs``` model we've already created and telling it serialize all of the fields in that model by declaring ```fields = '__all__'``` in the ```class Meta``` of the serializer. If you wanted to hide some of the fields that are returned to the end user this can be accomplished by declaring only the fields you want listed: ```fields = ('song_title', 'song_year')``` would only convert data from the ```song_title``` and ```song_year``` columns effectively hiding some of the informaton from the end user. You could also declare each attribute explicitly if you liked. Follow the instructions below to inspect this serializer in the Django shell.
 
 - ```  python manage.py shell``` --> launches shell from command line
 
@@ -116,14 +116,14 @@ class ListSongs(generics.ListAPIView):
     serializer_class = serializers.SongSerializer
 ```
 
-This class based view can be found in the ```example_project/example_app/views.py``` file. With class based views they only require that you define a ```queryset``` and ```serializer_class```. Remember that these attributes just represent our model and our serializer. Class based views using the ```generics``` classs don't require that you explicitly return the serialized data in a response like the functional view did above. The methods that are inherited from the ```generics``` class return the correct data by plugging in your ```queryset``` and ```serializer_class``` where appropriate behind the scenes. 
+This class based view can be found in the ```example_project/example_app/views.py``` file. With class based views they only require that you define a ```queryset``` and ```serializer_class```. Remember that these attributes just represent our model and our serializer. Class based views using the ```generics``` class don't require that you explicitly return the serialized data in a response like the functional view did above. The methods that are inherited from the ```generics``` class return the correct data by plugging in your ```queryset``` and ```serializer_class``` where appropriate behind the scenes. 
 
 This view currently only accepts ```GET``` requests becasue it's inheriting from the ```generics.ListAPIView``` class. If we would like to allow this view to be able to accept ```POST``` requests it is as simple as changing the class it inherits from. By using the ```generics.ListCreateAPIView``` class instead the endpoint will now accept ```POST``` requests and allow us to load data into our database by hitting this view's endpoint. 
 
 Please see the docs for the ```generics``` classes the DRF offers: [generic_views](http://www.django-rest-framework.org/api-guide/generic-views/)
 
 ## Linking URLs to views
-The last thing we must remember do is link a URL endpoint to each view we add to our project. The way we're recommending you do this for Hack Oregon projects can be seen below. 
+The last thing we must remember to do is link a URL endpoint to each view we add to our project. The way we're recommending you do this for Hack Oregon projects can be seen below. 
 
 This is an example of the contents of the ```example_project/example_app/urls.py``` file:
 ```Python
@@ -144,7 +144,7 @@ Notice the difference in how the functional view and class view are defined. The
 This ```urls.py``` file inside your ```example_app``` directory doesn't come standard with the project setup and must be created by you if you're making a new project. By having the ```urls``` declared for each app inside a project it gives you the ability to create a single point of entry into your API. This is valuable because as long as the user knows the entry endpoint they can find all the other endpoints easily.
 
 ## Adjusting urls in the project directory 
-There is still one last piece that needs to be linked in order for the endpoints to work properly. The endpoints that are served up by Django all must come out of the ```example_project/example_project/urls.py``` file. We haven't touched the inner ```example_project``` directory much in this tutorial yet. This inner directory is where you adjust the settings of your project and has two files that interest us ```settings.py``` and ```urls.py```. These files control all of the top level settings in your project. Every URL that is served in your project must come out of the ```urls.py``` file. In order to do this wee need to include the URLs we've already declared in our app. 
+There is still one last piece that needs to be linked in order for the endpoints to work properly. The endpoints that are served up by Django all must come out of the ```example_project/example_project/urls.py``` file. We haven't touched the inner ```example_project``` directory much in this tutorial yet. This inner directory is where you adjust the settings of your project and has two files that interest us ```settings.py``` and ```urls.py```. These files control all of the top level settings in your project. Every URL that is served in your project must come out of the ```urls.py``` file. In order to do this we need to include the URLs we've already declared in our app. 
 ```Python 
 from django.conf.urls import url
 from django.contrib import admin
@@ -155,7 +155,7 @@ urlpatterns = [
     url(r'^', include('example_app.urls', namespace='example_app')),
 ]
 ```
-Notice how we're using the ```include``` function to include all of the URLs we previously delcared in our app. Doing this gives us the option to add more apps in the future without worrying about URL conflicts. We also have the option of adding a prefix to all URLs for our app here. For example:
+Notice how we're using the ```include``` function to include all of the URLs we previously declared in our app. Doing this gives us the option to add more apps in the future without worrying about URL conflicts. We also have the option of adding a prefix to all URLs for our app here. For example:
 ```Python
 url(r'^example_prefix/', include('example_app.urls', namespace='example_app')),
 ```
