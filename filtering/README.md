@@ -34,7 +34,7 @@ Example of URL that allows querystrings:
 ```Python
 url(r'^songsquery/', views.ExampleView.as_view()),
 ```
-You can see that the only real difference with this URL is that there isn't a ```$``` character matching the end of a string present. As a result the Regex pattern will accept any characters after the ```songsquery/``` endpoint and pass them to the view. 
+You can see that the only real difference with this URL and the others we used in the first class is that there isn't a ```$``` character matching the end of a string present. As a result the Regex pattern will accept any characters after the ```songsquery/``` endpoint and pass them to the view. 
 
 A user would pass in a querystring argument by adding a ```?``` and then the ```name=value``` of what they are trying to pass to the view at the end of the URL. For example: ```https://example.com/songsquery/?year=1997``` would pass the ```year``` variable with the value of 1997. 
 
@@ -56,13 +56,26 @@ class ExampleView(generics.ListAPIView):
 
         """
         queryset = models.Songs.objects.all()
-        song_year = self.request.query_params.get('year', None)
+        year = self.request.query_params.get('year', None)
 
         if song_year is not None:
             queryset = queryset.filter(song_year__exact=year)
         return queryset
 ```
-The example above looks for the ```year``` variable in the ```query_params``` if it is present it assigns the value to the ```song_year``` variable inside the view. If no ```year``` is found in the querystring the ```song_year``` variable is then set to the value of ```None```. This is then used to decide whether or not to filter the returned values looking for the ```year``` specified in the querystring. 
+The example view above looks for the ```year``` variable in the request's ```query_params``` attribute. If it is present it assigns its value to the ```song_year``` variable inside the view. If no ```year``` is found in the ```query_params``` the ```song_year``` variable is then set to the value of ```None```. This is then used to decide whether or not to filter the returned values looking for the ```year``` specified in the querystring.
+
+### Django querysets and field lookups
+Django has a ton of built in methods that let you change querysets and filter results based on values in fields and across relationships in tables. These methods essentially let you write Python code that gets translated into SQL and then preforms actions on the database. 
+
+We've already used a few of these methods. When we defined a queryset in our view using: ```queryset = models.Songs.objects.all()``` we were using the built in ```.all()``` method that grabs all the data from the table we specified. The documentaion for [making_queries](https://docs.djangoproject.com/en/1.10/topics/db/queries/), [querysets](https://docs.djangoproject.com/en/1.10/ref/models/querysets/), and [field_lookups](https://docs.djangoproject.com/en/1.10/ref/models/querysets/#field-lookups) are really well written and worth checking out. 
+
+Here is an example of the pattern that is used for field lookups regardless of which method you're using:
+```Python
+queryset = queryset.filter(song_year__exact=year)
+```
+Field lookups are always specified as keyword arguments to queryset methods. In this example the queryset method is ```.filter()``` and the field lookup is the ```exact=value``` part, and ```song_year``` is the field name in the model. Notice the pattern ```field_name__fieldlookup=value```. The double underscore between the name of the model field you're filtering on and the lookup you're using against it is seen throughout the use of field lookups. 
+
+Now take some time and create some endpoints in your project that let users filter results using a few different field lookups found in the links to the documentation above. 
 
 
 
