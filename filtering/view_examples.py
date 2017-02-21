@@ -30,15 +30,15 @@ class ListSongsQuerystringExample(generics.ListAPIView):
         URL, else it returns all objects in Songs model. 
         Example of request: 
 
-        'https://example.com/songs/?song_year=1997' --> filters on year 1997
+        'https://example.com/songs/?year=1997' --> filters on year 1997
         'https://example.com/songs/' --> returns all songs
 
         """
         queryset = models.Songs.objects.all()
-        song_year = self.request.query_params.get('song_year', None)
+        song_year = self.request.query_params.get('year', None)
 
         if song_year is not None:
-            queryset = queryset.filter(song_year__exact=song_year)
+            queryset = queryset.filter(song_year__exact=year)
         return queryset
 
 
