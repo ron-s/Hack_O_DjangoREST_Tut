@@ -163,9 +163,12 @@ Would cause every URL in our app to look someting like this: ```https://api_loca
 
 
 ## Wrapping up 
-You now know the four main pieces that you need to worry about when adding an endpoint to any project. Those pieces are the ```model```, ```serializer```, ```view```, and ```url```. We would now like eveyone to try their hand at loading some sample data from a csv into this Django project by adding these four pieces and then sending ```POST``` requests to load the data. Please click on the [```movie_loader```](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/tree/master/movie_loader) directory and follow the instructions there. 
+You now know the four main pieces that you need to worry about when adding an endpoint to any project. Those pieces are the ```model```, ```serializer```, ```view```, and ```url```. We would now like eveyone to try their hand at loading some sample data from a csv into this Django project by adding these four pieces and then sending ```POST``` requests to load the data. Please follow this link: [movie_loader](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/tree/master/movie_loader) and follow the instructions there.
 
-In the following week's class we will get into more detail on filtering querysets, testing, the settings of a project, and adding tools that help make everything shiny. 
+## Next steps 
+This is a list of links to directories in this repo that will let you explore other aspects of the DRF now that you know the basics
+- [movie_loader](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/tree/master/movie_loader) --> walks through creating a model and loading fake data from a csv to your db using a ```POST``` endpoint.
+- [filtering](https://github.com/Zak-Kent/Hack_O_DjangoREST_Tut/tree/master/filtering) --> explores passing arguments to views and then filtering responses with those arguments. 
 
 
 
