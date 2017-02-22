@@ -46,11 +46,27 @@ class ListCreateMovies(generics.ListCreateAPIView):
     serializer_class = serializers.MovieSerializer
 
 
+class ListMoviesURLRegexExample(generics.ListAPIView):
+    """
+    An example of a view that takes a url parameter that is specified in the URL 
+    pattern in 'url_params.py'.  
+    """
+
+    serializer_class = serializers.MovieSerializer
+
+    def get_queryset(self):
+        queryset = models.Movies.objects.all()
+        movie_year = self.request.query_params.get('year', None)
+
+        if movie_year is not None:
+            queryset = queryset.filter(year__exact=movie_year)
+        return queryset
 
 
 
+class ExampleMovieDirectorView(generics.ListAPIView):
+    serializer_class = serializers.MovieSerializer
 
-
-
-
-
+    def get_queryset(self):
+        director = self.kwargs['director']
+        return models.Movies.objects.filter(director__contains=director)
