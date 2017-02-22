@@ -38,6 +38,13 @@ class ListSongs(generics.ListAPIView):
     serializer_class = serializers.SongSerializer
 
 
+class ListCreateMovies(generics.ListCreateAPIView):
+    """
+    A class based view that inherits from the movies class
+    """
+    queryset = models.Movies.objects.all()
+    serializer_class = serializers.MovieSerializer
+
 
 
 

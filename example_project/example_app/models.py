@@ -10,3 +10,15 @@ class Songs(models.Model):
     class Meta:
         db_table = 'song_lyrics'
 
+class Movies(models.Model):
+    id = models.AutoField(primary_key=True)
+    year = models.IntegerField(blank=True, null=True)
+    length = models.IntegerField(blank=True, null=True)
+    title = models.CharField(max_length=255, default='')
+    subject = models.CharField(max_length=255, default='')
+    actor = models.CharField(max_length=255, default='')
+    actress = models.CharField(max_length=255, default='')
+    director = models.CharField(max_length=255, default='')
+    popularity = models.IntegerField(blank=True, null=True)
+    awards = models.BooleanField()
+    image = models.CharField(max_length=255, default='')
