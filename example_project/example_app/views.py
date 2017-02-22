@@ -48,3 +48,9 @@ class ListCreateMovies(generics.ListCreateAPIView):
 
 
 
+
+
+
+
+
+
