@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # added outside of default setup 
     'rest_framework',
     'example_app',
+    'rest_framework_swagger'
     # *******************************
 ]
 
@@ -122,3 +123,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}
+
+# FIXTURE_DIRS = (
+#    '/example_app/fixtures/',
+# )

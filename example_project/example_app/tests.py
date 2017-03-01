@@ -1,10 +1,14 @@
 from django.test import TestCase, Client
 from . import models as my_models
 
+
 class SongListTest(TestCase):
     """
     This just checks that the songs endpoint accepts GET requests
     """
+
+    fixtures = ["initial_data"]
+
     def setUp(self):
         self.c = Client()
 
@@ -19,7 +23,7 @@ class SongListTest(TestCase):
 
 class MovieTest(TestCase):
     """
-    This test checks that you've setup the endpoint to recive GET and POST
+    This test checks that you've setup the endpoint to receive GET and POST
     requests and that you have the correct fields in your model. 
     """
 
@@ -61,5 +65,4 @@ class MovieTest(TestCase):
         
         for field_tup in zipped_fields:
             self.assertEqual(field_tup[0], field_tup[1])
-
 

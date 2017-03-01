@@ -65,6 +65,10 @@ class ListMoviesURLRegexExample(generics.ListAPIView):
 
 
 class ExampleMovieDirectorView(generics.ListAPIView):
+    """
+    A view that filters for director. \n
+    Ex. /director/{director}
+    """
     serializer_class = serializers.MovieSerializer
 
     def get_queryset(self):
